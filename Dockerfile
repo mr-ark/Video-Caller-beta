@@ -1,19 +1,6 @@
-FROM Python:3.11
-
-# Setup working directory
-WORKDIR /app
-
-# Copy required files from github
-RUN git clone https://github.com/anthappanorg/Video-Caller-beta.git
-
-# Change working directory
-WORKDIR Video-Caller-beta
-
-# Install dependencies
-RUN apt-get update
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
+FROM python:3.10
+WORKDIR /Video-caller-beta
+COPY requirements.txt /video-caller-beta/
 RUN pip3 install -r requirements.txt
-
-# Run the application
-CMD ["python3", "server.py"]
+COPY . /video-caller-beta
+CMD python3 server.py
