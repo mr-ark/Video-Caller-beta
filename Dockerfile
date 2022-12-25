@@ -1,6 +1,6 @@
 FROM python:3.10
-WORKDIR /Video-caller-beta
-COPY requirements.txt /video-caller-beta/
+WORKDIR /app
+COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
-COPY . /video-caller-beta
+COPY . /app
 CMD python3 server.py
