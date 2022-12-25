@@ -1,11 +1,7 @@
-FROM ubuntu:latest
+FROM Python:3.11
 
 # Setup working directory
 WORKDIR /app
-
-# Install Java
-RUN apt-get update
-RUN apt-get install default-jdk -y
 
 # Copy required files from github
 RUN git clone https://github.com/anthappanorg/Video-Caller-beta.git
@@ -14,8 +10,10 @@ RUN git clone https://github.com/anthappanorg/Video-Caller-beta.git
 WORKDIR Video-Caller-beta
 
 # Install dependencies
-RUN apt-get install -y npm
-RUN npm install
+RUN apt-get update
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN pip3 install -r requirements.txt
 
 # Run the application
-CMD ["node", "server.py"]
+CMD ["python3", "server.py"]
